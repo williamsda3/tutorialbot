@@ -1463,7 +1463,7 @@ Current step: ${currentStep >= 0 ? currentStep + 1 : 'not started'} (${currentSt
 Keep responses focused, practical, and concise. Include code snippets when helpful. Format with HTML tags (p, strong, code, pre, ul, li, ol). Do not use markdown. Stay on topic — this is about the sleep analysis project. If they ask something unrelated, gently redirect.`;
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1556,7 +1556,7 @@ Keep responses focused, practical, and concise. Format with HTML tags (p, strong
   contentBlocks.push({ type: "text", text: userText });
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
