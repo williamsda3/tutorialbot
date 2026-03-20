@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
+const fs = require('fs')
 const { getDb } = require('./db/setup')
 const { sessionMiddleware } = require('./middleware/session')
 
@@ -35,11 +36,12 @@ app.post('/api/chat-legacy', async (req, res) => {
   }
 })
 
-// In production, serve the built React app
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')))
+// Serve the built React app if dist exists (production / post-build)
+const distPath = path.join(__dirname, '../client/dist')
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath))
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+    res.sendFile(path.join(distPath, 'index.html'))
   })
 }
 
