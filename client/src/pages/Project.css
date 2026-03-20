@@ -1,0 +1,13 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .app-layout { grid-template-columns: 1fr; }
+  .app-layout .sidebar { display: none; }
+  .app-layout .messages-container { padding: 16px; }
+  .app-layout .input-area { padding: 12px 16px 16px; }
+  .app-layout .chat-header { padding: 12px 16px; }
+}
